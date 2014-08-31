@@ -33,7 +33,7 @@ namespace CodeMeter.HttpService.Models
             var first = Logs.FirstOrDefault();
             var last = Logs.LastOrDefault();
             StartTime = first != null ? first.Start : null;
-            EndTime = last != null && last.End.HasValue ? last.End.Value : (DateTime?) null;
+            EndTime = last != null && last.End.HasValue ? last.End.Value : (StartTime != null ? DateTime.Now : (DateTime?)null);
             if (StartTime == null || EndTime == null)
             {
                 return;

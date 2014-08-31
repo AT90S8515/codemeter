@@ -17,7 +17,13 @@ namespace CodeMeter.HttpService.Controllers
         {
             using (var c = new DataContext())
             {
-                return c.Projects.ToArray();
+                var projects = c.Projects.Include(x => x.Tasks).Include(x => x.Tasks.Select(t => t.Logs)).ToArray();
+                foreach (var project in projects)
+                {
+                    project.SetTotals();
+                    project.Tasks = null;
+                }
+                return projects;
             }
         } 
 
