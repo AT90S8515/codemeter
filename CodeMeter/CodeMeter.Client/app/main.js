@@ -1,14 +1,14 @@
 requirejs.config({
     paths: {
-        'text': '../bower_components/requirejs-text/text',
-        'durandal': '../bower_components/durandal/js',
-        'plugins': '../bower_components/durandal/js/plugins',
-        'transitions': '../bower_components/durandal/js/transitions',
-        'knockout': '../bower_components/knockout.js/knockout',
-        'komapping': '../bower_components/knockout-mapping/knockout.mapping',
-        'jquery': '../bower_components/jquery/jquery',
-        'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap',
-        'moment': '../bower_components/moment/min/moment.min'
+        'text': '../lib/requirejs-text/text',
+        'durandal': '../lib/durandal',
+        'plugins': '../lib/durandal/plugins',
+        'transitions': '../lib/durandal/transitions',
+        'knockout': '../lib/knockout/knockout',
+        'komapping': '../lib/knockout/knockout.mapping',
+        'jquery': '../lib/jquery/jquery.min',
+        'bootstrap': '../lib/bootstrap/bootstrap.min',
+        'moment': '../lib/moment/moment.min'
 
     },
     shim: {
