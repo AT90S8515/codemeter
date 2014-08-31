@@ -33,7 +33,7 @@ define(['plugins/router', "durandal/app"], function (router, app) {
                     "nav": false
                 },
                 {
-                    "route": "task(/:id)",
+                    "route": "task/:projectId(/:taskId)",
                     "moduleId": "viewmodels/task",
                     "title": "Task",
                     "nav": false

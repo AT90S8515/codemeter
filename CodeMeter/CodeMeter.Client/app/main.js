@@ -8,6 +8,7 @@ requirejs.config({
         'komapping': '../bower_components/knockout-mapping/knockout.mapping',
         'jquery': '../bower_components/jquery/jquery',
         'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap',
+        'moment': '../bower_components/moment/min/moment.min'
 
     },
     shim: {

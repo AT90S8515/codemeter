@@ -1,5 +1,6 @@
 define(['plugins/http'], function(http) {
-    var url = "http://localhost:52214/api/";
+    //var url = "http://localhost:52214/api/";
+    var url = "http://codemeter.brizb.rs/api/";
     return {
         getProjects: function() {
             return http.get(url + 'projects');
@@ -24,6 +25,21 @@ define(['plugins/http'], function(http) {
         },
         getLastTaskRun: function (taskId) {
             return http.get(url + 'task/lastRun/' + taskId);
+        },
+        insertTask: function (task) {
+            return http.post(url + 'project/' + task.ProjectID() + '/tasks/', task);   
+        },
+        updateTask: function (task) {
+            return http.put(url + 'project/' + task.ProjectID() + '/tasks/' + task.ID(), task);  
+        },
+        deleteTask: function (id) {
+            return http.remove(url + 'project/0/tasks/' + id);   
+        },
+        startTask: function (id) {
+            return http.put(url + 'task/StartTask/' + id);   
+        },
+        stopTask: function (id) {
+             return http.put(url + 'task/EndTask/' + id); 
         }
     };
 })

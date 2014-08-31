@@ -1,20 +1,21 @@
-define(["jquery", "knockout", "durandal/app", "durandal/system", "plugins/router", "services/data"], function ($, ko, app, system, router, data) {
+define(["jquery", "knockout", "durandal/app", "durandal/system", "plugins/router", "services/data", "moment", "utils/utils"], function ($, ko, app, system, router, data, moment, utils) {
     var
         // Properties
         tasks = ko.observableArray([]),
         projectName = ko.observable(''),
+        projectId,
         onEditTask = function(task) {
-            router.navigate('#task/' + task.ID);
+            router.navigate('#task/' + projectId + '/' + task.ID);
         },
         onDeleteTask = function (task) {
             app.showMessage("Are you sure?", null, ["No", "Yes"]).then(function(answer) {
-                http.deleteTask(task.ID).done(function() {
+                data.deleteTask(task.ID).done(function() {
                     tasks.remove(task);
                 }).fail(function(){}); 
             });
         },
         onCreateNewTask = function () {
-            router.navigate("#task");  
+            router.navigate("#task/" + projectId);  
         },
         onGotoToTask = function (task) {
             router.navigate("#taskrunner/" + task.ID);
@@ -28,7 +29,13 @@ define(["jquery", "knockout", "durandal/app", "durandal/system", "plugins/router
 
         activate = function (project) {
             return data.getTasks(project).done(function(project) {
+                projectId = project.ID;
                 projectName(project.Name);
+                project.Tasks.forEach(function(task, ix) {
+                    task.StartTime = task.StartTime ? moment(task.StartTime).format("DD.MM.YY HH:mm:ss") : 'N/A';
+                    task.EndTime = task.EndTime ? moment(task.EndTime).format("DD.MM.YY HH:mm:ss") : 'N/A';
+                    task.Elapsed = utils.formatTime(task.ElapsedSeconds);
+                })
                 tasks(project.Tasks);
             }).fail(function(){});
         },

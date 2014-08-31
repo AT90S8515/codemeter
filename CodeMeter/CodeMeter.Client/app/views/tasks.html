@@ -1,6 +1,6 @@
 <section id="page-tasks" class="page">
     <div class="page-header">
-        <h1 ><span data-bind="text: projectName"></span>
+        <h1><span data-bind="text: projectName"></span>
             <small> tasks</small>
         </h1>
     </div>
@@ -9,8 +9,19 @@
         <tbody data-bind="foreach: tasks">
             <tr>
                 <td style="cursor: pointer" data-bind="click: $root.onGotoToTask">
-                    <h4 data-bind="text: Name"></h4>
-                    <small data-bind="text: Description"></small>
+                    <span>
+                        <i class="fa fa-play-circle text-success" data-bind="visible: IsRunning"></i>
+                        <span data-bind="text: Name" style="font-size: 24px;"></span>
+                    </span>
+                    <br/>
+                    <span data-bind="text: Description"></span>
+                </td>
+                <td>
+                    <span data-bind="text: StartTime" class="pull-right"></span>
+                    <br/>
+                    <span data-bind="text: EndTime" class="pull-right"></span>
+                    <br/>
+                    <strong class="text-primary pull-right" data-bind="text: Elapsed"></strong>
                 </td>
                 <td style="width: 120px">
                     <div class="btn-group">

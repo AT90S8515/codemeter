@@ -2,13 +2,13 @@
     <div class="page-header">
         <h1>My Projects</h1>
     </div>
-    <a href="#" class="btn btn-primary action_button" data-bind="click: onCreateNew">Create</a>
+    <a href="#" class="btn btn-primary action_button" data-bind="click: onCreateNew">Create New</a>
     <table class="table">
         <tbody data-bind="foreach: projects">
             <tr style="cursor: pointer">
                 <td style="width: 70%;" data-bind="click: $root.onGotoProject">
                     <h4 data-bind="text: Name"></h4>
-                    <small data-bind="text: Description"></small>
+                    <span data-bind="text: Description"></span>
                 </td>
                 <td>
                     <div class="btn-group">

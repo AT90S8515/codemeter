@@ -1,16 +1,26 @@
 <section id="page-taskrunner" class="page">
     <div class="page-header">
         <h1 data-bind="text: taskName">Task runner</h1>
+        <span>Start time: <span data-bind="text: started" class="text-primary"></span></span><br/>
+        <span>Last stop : &nbsp;<span data-bind="text: ended" class="text-primary"></span></span>
     </div>
-    <div class="center-block" style="width: 240px;">
-        <a href="#" class="btn btn-success">
-            <i class="fa fa-play"></i> Start
+    <p data-bind="text: elapsed" class="text-center text-primary" style="font-size: 72px"></h1>
+    <div class="center-block" style="width: 260px;">
+        <a href="#" class="btn btn-success" data-bind="click: start, attr: {disabled: isRunning}">
+            <i class="fa" data-bind="css: {'fa-play': !isRunning(), 'fa-spinner fa-spin': isRunning()}"></i> Start
         </a>
-        <a href="#" class="btn btn-danger">
+        <a href="#" class="btn btn-danger" data-bind="click: pause, attr: {disabled: !isRunning}">
             <i class="fa fa-pause"></i> Pause
         </a>
-        <a href="#" class="btn btn-danger">
+        <a href="#" class="btn btn-danger" data-bind="click: stop, attr: {disabled: !isRunning}">
             <i class="fa fa-stop"></i> Stop
         </a>
     </div>
+<!-- ko if:error -->
+<div class="alert alert-danger" role="alert" data-bind="visible: error" style="margin-top: 15px;">
+<!--  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>-->
+  <strong>Error!</strong> <br/>
+  <p data-bind="text: error"></p>
+</div>
+<!-- /ko -->
 </section>

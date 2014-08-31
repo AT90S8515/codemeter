@@ -37,7 +37,7 @@ define(["jquery", "knockout", "durandal/app", "durandal/system", "plugins/router
             } else {
                 mapping.fromJS({
                     ID: '',
-                    Name: 'New project',
+                    Name: '',
                     Client: ''
                 }, project);
             }
