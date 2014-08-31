@@ -5,20 +5,25 @@ requirejs.config({
         'plugins': '../bower_components/durandal/js/plugins',
         'transitions': '../bower_components/durandal/js/transitions',
         'knockout': '../bower_components/knockout.js/knockout',
+        'komapping': '../bower_components/knockout-mapping/knockout.mapping',
         'jquery': '../bower_components/jquery/jquery',
         'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap',
-        
+
     },
     shim: {
-    bootstrap: {
+        komapping: {
+            deps: ['knockout'],
+            exports: 'komapping'
+        },
+        bootstrap: {
             deps: ['jquery'],
             exports: 'jQuery'
         },
-    
+
     }
 });
 
-define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'bootstrap'],  function (system, app, viewLocator) {
+define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'bootstrap'], function (system, app, viewLocator) {
     //>>excludeStart("build", true);
     system.debug(true);
     //>>excludeEnd("build");
@@ -26,12 +31,12 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'bootstrap'],
     app.title = "CodeMeter";
 
     app.configurePlugins({
-        router:true,
+        router: true,
         dialog: true,
         widget: true
     });
 
-    app.start().then(function() {
+    app.start().then(function () {
         // Replace 'viewmodels' in the moduleId with 'views' to locate the view.
         // Look for partial views in a 'views' folder in the root.
         viewLocator.useConvention();

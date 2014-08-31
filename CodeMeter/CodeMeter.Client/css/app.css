@@ -1,4 +1,4 @@
-﻿body {
+body {
   padding-top: 70px;
 }
 #top-menu .navbar-search {
@@ -33,4 +33,12 @@
   left: 50%;
   margin-top: -0.5em;
   margin-left: -0.5em;
+}
+
+.action_button {
+    margin-bottom: 8px;
+}
+
+.list-group-item {
+    cursor: pointer;
 }

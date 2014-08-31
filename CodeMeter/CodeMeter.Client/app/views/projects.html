@@ -1,6 +1,31 @@
 <section id="page-projects" class="page">
     <div class="page-header">
-        <h1>Projects</h1>
+        <h1>My Projects</h1>
     </div>
-    <p>Your content here</p>
+    <a href="#" class="btn btn-primary action_button" data-bind="click: onCreateNew">Create</a>
+    <table class="table">
+        <tbody data-bind="foreach: projects">
+            <tr style="cursor: pointer">
+                <td style="width: 70%;" data-bind="click: $root.onGotoProject">
+                    <h4 data-bind="text: Name"></h4>
+                    <small data-bind="text: Description"></small>
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-cog"></i> 
+<!--                            <span class="caret"></span>-->
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#" data-bind="click: $root.onEditProject">Edit</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="#" data-bind="click: $root.onDeleteProject">Delete</a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>

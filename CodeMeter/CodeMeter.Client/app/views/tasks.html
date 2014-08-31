@@ -1,0 +1,34 @@
+<section id="page-tasks" class="page">
+    <div class="page-header">
+        <h1 ><span data-bind="text: projectName"></span>
+            <small> tasks</small>
+        </h1>
+    </div>
+    <a href="#" class="btn btn-primary action_button" data-bind="click: onCreateNewTask">Create New</a>
+    <table class="table">
+        <tbody data-bind="foreach: tasks">
+            <tr>
+                <td style="cursor: pointer" data-bind="click: $root.onGotoToTask">
+                    <h4 data-bind="text: Name"></h4>
+                    <small data-bind="text: Description"></small>
+                </td>
+                <td style="width: 120px">
+                    <div class="btn-group">
+                        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-cog"></i>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#" data-bind="click: $root.onEditTask">Edit</a>
+                            </li>
+                            <li><a href="#" data-bind="click: $root.onTaskDetails">Details</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="#" data-bind="click: $root.onDeleteTask">Delete</a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
