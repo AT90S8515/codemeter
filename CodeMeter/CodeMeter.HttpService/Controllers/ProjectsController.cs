@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -14,34 +15,48 @@ namespace CodeMeter.HttpService.Controllers
     {
         public IList<Project> Get()
         {
-            return new List<Project>()
+            using (var c = new DataContext())
             {
-                new Project(){ID = 1, Guid = Guid.NewGuid(), Name = "Demo", Description = "Bla bla bla"},
-                new Project(){ID = 2, Guid = Guid.NewGuid(), Name = "Test"},
-                new Project(){ID = 3, Guid = Guid.NewGuid(), Name = "Nineks"},
-                new Project(){ID = 4, Guid = Guid.NewGuid(), Name = "Agava"},
-            };
+                return c.Projects.ToArray();
+            }
         } 
 
         public Project Get(int id)
         {
-            return new Project() {ID = id, Guid = Guid.NewGuid(), Name = "Demo"};
+            using (var c = new DataContext())
+            {
+                return c.Projects.Single(x => x.ID == id);
+            }
         }
 
         public HttpResponseMessage Post(HttpRequestMessage request, Project project)
         {
+            using (var c = new DataContext())
+            {
+                project.Guid = Guid.NewGuid();
+                c.Projects.Add(project);
+                c.SaveChanges();
+            }
             var response = request.CreateResponse(HttpStatusCode.Created, project.ID);
             return response;
         }
 
         public void Put(Project project)
         {
-            
+            using (var c = new DataContext())
+            {
+                c.Entry(project).State = EntityState.Modified;
+                c.SaveChanges();
+            }
         }
 
         public void Delete(int id)
         {
-            
+            using (var c = new DataContext())
+            {
+                c.Entry(new Project() { ID = id }).State = EntityState.Deleted;
+                c.SaveChanges();
+            }
         }
     }
 }
