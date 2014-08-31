@@ -9,6 +9,17 @@ namespace CodeMeter.HttpService
     {
         public static void Register(HttpConfiguration config)
         {
+            config.EnableCors();
+            config.Routes.MapHttpRoute(
+                name: "ProjectTasksApi",
+                routeTemplate: "api/project/{projectId}/tasks/{taskId}",
+                defaults: new { controller = "Tasks", taskId = RouteParameter.Optional }
+            );
+            config.Routes.MapHttpRoute(
+                name: "TasksApi",
+                routeTemplate: "api/task/{action}/{taskId}",
+                defaults: new { controller = "Tasks" }
+            );
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
