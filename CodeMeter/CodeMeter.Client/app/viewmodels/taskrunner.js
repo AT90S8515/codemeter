@@ -56,15 +56,17 @@ define(["jquery", "knockout", "durandal/app", "durandal/system", "plugins/router
                 taskName(task.Name);
                 elapsedTime = task.ElapsedSeconds;
                 elapsed(utils.formatTime(elapsedTime));
-                started(moment(task.StartTime).format(TIME_FORMAT))
-                ended(moment(task.EndTime).format(TIME_FORMAT))
+                started(task.StartTime ? moment(task.StartTime).format(TIME_FORMAT) : 'N/A')
+                ended(task.EndTime ? moment(task.EndTime).format(TIME_FORMAT): 'N/A')
                 if (task.IsRunning) {
                     startTimer();   
                 }
             }).fail(function () {});
         },
 
-        deactivate = function () {};
+        deactivate = function () {
+            clearInterval(timer);
+        };
 
     ko.computed
 

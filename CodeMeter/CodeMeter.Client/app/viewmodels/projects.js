@@ -1,4 +1,4 @@
-define(["jquery", "knockout", "durandal/app", "durandal/system", "plugins/router", "services/data"], function ($, ko, app, system, router, data) {
+define(["jquery", "knockout", "durandal/app", "durandal/system", "plugins/router", "services/data", "utils/utils"], function ($, ko, app, system, router, data, utils) {
     var
         // Properties
         projects = ko.observableArray([]),
@@ -25,6 +25,10 @@ define(["jquery", "knockout", "durandal/app", "durandal/system", "plugins/router
 
         activate = function () {
             return data.getProjects().done(function(data) {
+                data.forEach(function(proj) {
+                   proj.TotalTime = utils.formatTime(proj.TotalTime);
+                   proj.Total = Math.round(proj.Total, 2);
+                });
                 projects(data);   
             }).fail(function(err) {
             
