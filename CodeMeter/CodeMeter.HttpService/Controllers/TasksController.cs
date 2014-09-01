@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -47,7 +46,7 @@ namespace CodeMeter.HttpService.Controllers
             return r;
         }
 
-        public void Put(int projectId, Task task)
+        public void Put(int projectId, int taskId, Task task)
         {
             using (var c = new DataContext())
             {
@@ -65,7 +64,7 @@ namespace CodeMeter.HttpService.Controllers
             }
         }
 
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         public Task LastRun(int taskId)
         {
             using (var c = new DataContext())
@@ -77,7 +76,7 @@ namespace CodeMeter.HttpService.Controllers
             }
         }
 
-        [HttpPut]
+        [System.Web.Http.HttpPut]
         public HttpResponseMessage StartTask(HttpRequestMessage request, int taskId)
         {
             using (var c = new DataContext())
@@ -97,7 +96,7 @@ namespace CodeMeter.HttpService.Controllers
             }
         }
 
-        [HttpPut]
+        [System.Web.Http.HttpPut]
         public Task EndTask(HttpRequestMessage request, int taskId)
         {
             using (var c = new DataContext())
