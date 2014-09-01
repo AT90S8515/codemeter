@@ -4,6 +4,8 @@ define(["jquery", "knockout", "durandal/app", "durandal/system", "plugins/router
         tasks = ko.observableArray([]),
         projectName = ko.observable(''),
         projectId,
+        refresh,
+        timer,
         onEditTask = function(task) {
             router.navigate('#task/' + projectId + '/' + task.ID);
         },
@@ -23,11 +25,7 @@ define(["jquery", "knockout", "durandal/app", "durandal/system", "plugins/router
         onTaskDetails = function (task) {
         
         },
-        // Handlers
-
-        // Lifecycle
-
-        activate = function (project) {
+        load = function (project) {
             return data.getTasks(project).done(function(project) {
                 projectId = project.ID;
                 projectName(project.Name);
@@ -39,8 +37,21 @@ define(["jquery", "knockout", "durandal/app", "durandal/system", "plugins/router
                 tasks(project.Tasks);
             }).fail(function(){});
         },
+        // Handlers
+
+        // Lifecycle
+
+        activate = function (project) {
+            app.on('refresh').then(function() {load(project);});
+            timer = setInterval(function() {
+                load(project);
+            }, 30 * 1000);
+            return load(project);
+        },
 
         deactivate = function () {
+            refresh.off();
+            clearInterval(timer);
         };
 
     return {

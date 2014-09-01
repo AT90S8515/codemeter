@@ -5,7 +5,8 @@ define(["jquery", "knockout", "durandal/app", "durandal/system", "plugins/router
         project = mapping.fromJS({
             ID: '',
             Name: '',
-            Client: ''
+            Client: '',
+            Price: 0
         }),
         isBusy = ko.observable(false),
         notBusy = function() {
@@ -38,7 +39,8 @@ define(["jquery", "knockout", "durandal/app", "durandal/system", "plugins/router
                 mapping.fromJS({
                     ID: '',
                     Name: '',
-                    Client: ''
+                    Client: '',
+                    Price: 0
                 }, project);
             }
         },

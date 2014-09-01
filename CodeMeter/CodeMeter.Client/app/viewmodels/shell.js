@@ -1,7 +1,13 @@
 define(['plugins/router', "durandal/app"], function (router, app) {
+    var
+    
+        refresh = function() {
+            app.trigger('refresh');
+        };
+    
     return {
         router: router,
-
+        refresh : refresh,
         search: function () {
             app.showMessage("Not Implemented", "Error");
         },
@@ -44,6 +50,7 @@ define(['plugins/router', "durandal/app"], function (router, app) {
                     "title": "Task runner",
                     "nav": false
                 },
+                {"route":"configuration","moduleId":"viewmodels/configuration","title":"Configuration","nav":false},
                 /*{durandal:routes}*/
             ]).buildNavigationModel();
 

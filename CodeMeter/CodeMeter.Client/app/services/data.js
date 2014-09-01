@@ -40,6 +40,12 @@ define(['plugins/http'], function(http) {
         },
         stopTask: function (id) {
              return http.put(url + 'task/EndTask/' + id); 
+        },
+        getConfiguration: function() {
+            return http.get(url + 'configuration');   
+        },
+        updateConfiguration: function (cfg) {
+            return http.put(url + 'configuration', cfg);   
         }
     };
 })

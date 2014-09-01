@@ -1,6 +1,8 @@
 define(["jquery", "knockout", "durandal/app", "durandal/system", "plugins/router", "services/data", "utils/utils"], function ($, ko, app, system, router, data, utils) {
     var
         // Properties
+        timer,
+        refresh,
         projects = ko.observableArray([]),
         // Handlers
         onCreateNew = function () {
@@ -21,9 +23,7 @@ define(["jquery", "knockout", "durandal/app", "durandal/system", "plugins/router
                 }
             });
         },
-        // Lifecycle
-
-        activate = function () {
+        load = function () {
             return data.getProjects().done(function(data) {
                 data.forEach(function(proj) {
                    proj.TotalTime = utils.formatTime(proj.TotalTime);
@@ -33,9 +33,18 @@ define(["jquery", "knockout", "durandal/app", "durandal/system", "plugins/router
             }).fail(function(err) {
             
             });
+        }
+        // Lifecycle
+
+        activate = function () {
+            refresh = app.on('refresh').then(load);
+            timer = setInterval(load, 30 * 1000);
+            return load();
         },
 
         deactivate = function () {
+            refresh.off();
+            clearInterval(timer);
         };
 
     return {

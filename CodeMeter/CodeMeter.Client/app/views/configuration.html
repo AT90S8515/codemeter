@@ -1,0 +1,109 @@
+<section id="page-configuration" class="page">
+    <div class="page-header">
+        <h1>Configuration</h1>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Notifications</div>
+        <div class="panel-body">
+            <form class="form-horizontal" data-bind="submit: save">
+                <div class="form-group">
+                    <div class="col-xs-offset-4 col-xs-8">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" data-bind="checked: cfg.CheckRunning"> Notifications enabled
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-4">Notifications interval</label>
+                    <div class="col-xs-8">
+                        <input type="number" class="form-control" data-bind="value: cfg.CheckInterval">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-4">Tolerance</label>
+                    <div class="col-xs-8">
+                        <input type="number" class="form-control" data-bind="value: cfg.NotificationInterval">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-offset-4 col-xs-8">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" data-bind="checked: cfg.SendEmail"> Send e-mail
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-offset-4 col-xs-8">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" data-bind="checked: cfg.SendSms"> Send SMS
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary col-xs-offset-9">
+                    <i class="fa fa-spinner fa-spin" data-bind="visible: isBusy"></i> Submit
+                </button>
+            </form>
+        </div>
+    </div>
+     <div class="panel panel-default">
+        <div class="panel-heading">Setup</div>
+        <div class="panel-body">
+            <form class="form-horizontal" data-bind="submit: save">
+                <div class="form-group">
+                    <label class="control-label col-xs-4">Sender</label>
+                    <div class="col-xs-8">
+                        <input class="form-control" data-bind="value: cfg.Sender">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-4">Recepient</label>
+                    <div class="col-xs-8">
+                        <input class="form-control" data-bind="value: cfg.Recepient">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-4">SMTP</label>
+                    <div class="col-xs-8">
+                        <input class="form-control" data-bind="value: cfg.Smtp">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-4">Port</label>
+                    <div class="col-xs-8">
+                        <input type="number" class="form-control" data-bind="value: cfg.Port">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-4">Username</label>
+                    <div class="col-xs-8">
+                        <input class="form-control" data-bind="value: cfg.Username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-4">Password</label>
+                    <div class="col-xs-8">
+                        <input type="password" class="form-control" data-bind="value: cfg.Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-offset-4 col-xs-8">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" data-bind="checked: cfg.Ssl"> SSL
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary col-xs-offset-9">
+                    <i class="fa fa-spinner fa-spin"  data-bind="visible: isBusy"></i> Submit
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
