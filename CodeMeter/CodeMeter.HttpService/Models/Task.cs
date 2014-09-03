@@ -38,7 +38,15 @@ namespace CodeMeter.HttpService.Models
             {
                 return;
             }
-            ElapsedSeconds = (int)EndTime.Value.Subtract(StartTime.Value).TotalSeconds;
+            ElapsedSeconds = 0;
+            foreach (var taskLog in Logs)
+            {
+                if (taskLog.End == null)
+                {
+                    taskLog.End = DateTime.Now;
+                }
+                ElapsedSeconds += (int)taskLog.End.Value.Subtract(taskLog.Start.Value).TotalSeconds;
+            }
         }
     }
 }
